@@ -1,14 +1,14 @@
 /*
  * Copyright (c) 2022 Renesas Electronics Corporation and/or its affiliates
- * Copyright (c) 2025, Muhammad Waleed Badar
+ * Copyright (c) 2025 Muhammad Waleed Badar
  *
  * SPDX-License-Identifier: Apache-2.0
  */
 
 /dts-v1/;
+
 #include <renesas/smartbond/da14697.dtsi>
 #include "mi_band_4-pinctrl.dtsi"
-#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 / {
 	model = "Xiaomi Mi Band 4";
@@ -61,7 +61,7 @@
 	};
 };
 
-&rc32m {
+&rcx {
 	status = "disabled";
 };
 
@@ -69,16 +69,12 @@
 	status = "okay";
 };
 
-/*
- * On board level we switch to XTAL32K and
- * so RCX can be disabled.
- */
-&rcx {
-	status = "disabled";
-};
-
 &lp_clk {
 	clock-src = <&xtal32k>;
+};
+
+&rc32m {
+	status = "disabled";
 };
 
 &xtal32m {

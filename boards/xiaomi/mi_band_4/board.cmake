@@ -1,6 +1,6 @@
 #
 # Copyright (c) 2022 Renesas Electronics Corporation
-# Copyright (c) 2025, Muhammad Waleed Badar
+# Copyright (c) 2025 Muhammad Waleed Badar
 #
 # SPDX-License-Identifier: Apache-2.0
 #

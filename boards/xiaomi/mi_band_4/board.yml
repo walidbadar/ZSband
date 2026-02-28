@@ -1,6 +1,6 @@
 board:
   name: mi_band_4
-  full_name: Xiaomi-Mi-Band-4
+  full_name: Xiaomi Mi Band 4
   vendor: xiaomi
   socs:
   - name: da14697

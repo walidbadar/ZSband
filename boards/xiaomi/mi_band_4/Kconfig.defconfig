@@ -1,5 +1,5 @@
 # Copyright (c) 2024 Renesas Electronics Corporation
-# Copyright (c) 2025, Muhammad Waleed Badar
+# Copyright (c) 2025 Muhammad Waleed Badar
 # SPDX-License-Identifier: Apache-2.0
 
 if BOARD_MI_BAND_4

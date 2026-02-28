@@ -1,0 +1,6 @@
+.DS_Store
+.vscode
+build
+target
+Cargo.lock
+*.key.pem
