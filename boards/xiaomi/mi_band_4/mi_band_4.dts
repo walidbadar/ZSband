@@ -10,9 +10,12 @@
 #include <renesas/smartbond/da14697.dtsi>
 #include "mi_band_4-pinctrl.dtsi"
 
+#include <zephyr/dt-bindings/display/panel.h>
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
 / {
 	model = "Xiaomi Mi Band 4";
-	compatible = "xiaomi,mi_band_4", "renesas,da14697";
+	compatible = "xiaomi,mi-band-4", "renesas,da14697";
 	#address-cells = <1>;
 	#size-cells = <1>;
 
@@ -23,6 +26,7 @@
 		zephyr,shell-uart = &uart;
 		zephyr,code-partition = &slot0_partition;
 		zephyr,bt-hci = &bt_hci_da1469x;
+		zephyr,display = &rm69310;
 	};
 };
 
@@ -85,6 +89,28 @@
 	pinctrl-1 = <&i2c2_sleep>;
 	pinctrl-names = "default", "sleep";
 	status = "okay";
+};
+
+&lcdc {
+	compatible = "renesas,smartbond-mipi-dbi";
+	status = "okay";
+	reset-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
+	pinctrl-0 = <&mipi_dbi_default>;
+	pinctrl-1 = <&mipi_dbi_read>;
+	pinctrl-2 = <&mipi_dbi_sleep>;
+	pinctrl-names = "default", "read", "sleep";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	rm69310: rm69310@0 {
+		compatible = "raydium,rm69310";
+		reg = <0>;
+		mipi-max-frequency = <DT_FREQ_M(40)>;
+		mipi-mode = "MIPI_DBI_MODE_SPI_4WIRE";
+		pixel-format = <PANEL_PIXEL_FORMAT_RGB_565>;
+		width  = <240>;
+		height = <240>;
+	};
 };
 
 &bt_hci_da1469x {

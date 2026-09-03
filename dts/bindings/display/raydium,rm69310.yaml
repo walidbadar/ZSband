@@ -1,0 +1,71 @@
+#
+# Copyright (c) 2026 Muhammad Waleed Badar
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+title: Raydium RM69310 display controller
+
+description: |
+  The Raydium RM69310 is a 16.7M colors OLED controller
+  with a maximum 240RGBX240 resolution.
+
+  Here is an example to define a display interface:
+
+  / {
+      mipi_dbi: mipi_dbi {
+          compatible = "zephyr,mipi-dbi-spi";
+          spi-dev = <&spi2>;
+          dc-gpios    = <&gpio0 4 GPIO_ACTIVE_HIGH>;
+          reset-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
+          write-only;
+          #address-cells = <1>;
+          #size-cells = <0>;
+
+          rm69310: rm69310@0 {
+              compatible = "raydium,rm69310";
+              reg = <0>;
+              mipi-max-frequency = <DT_FREQ_M(40)>;
+              mipi-mode = "MIPI_DBI_MODE_SPI_4WIRE";
+              pixel-format = <PANEL_PIXEL_FORMAT_RGB_565>;
+              width  = <240>;
+              height = <240>;
+          };
+      };
+  };
+
+compatible: "raydium,rm69310"
+
+include: [display-controller.yaml, mipi-dbi-spi-device.yaml]
+
+properties:
+  pixel-format:
+    type: int
+    required: true
+    description: |
+      Initial Pixel format of this controller's output data.
+    enum:
+      - 1 # PANEL_PIXEL_FORMAT_RGB_888
+      - 16 # PANEL_PIXEL_FORMAT_RGB_565
+
+  x-offset:
+    type: int
+    default: 0
+    description: |
+      Horizontal offset of the active area within the controller's
+      frame buffer. Needed when the panel's active area does not start
+      at column 0 of the controller address space.
+
+  y-offset:
+    type: int
+    default: 0
+    description: |
+      Vertical offset of the active area within the controller's
+      frame buffer.
+
+  inversion:
+    type: boolean
+    description: |
+      Enable display colour inversion (INVON). Some panel assemblies
+      ship with the OLED stack arranged so that colour inversion is
+      required to produce a correct image.

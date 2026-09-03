@@ -18,6 +18,7 @@ manifest:
           - mcuboot
           - net-tools
           - segger
+          - cmsis
           - cmsis_6
           - lvgl
           - hal_renesas

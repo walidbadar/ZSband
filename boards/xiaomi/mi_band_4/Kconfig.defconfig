@@ -31,4 +31,11 @@ config TEST_RANDOM_GENERATOR
 
 endif # BT
 
+if DISPLAY
+
+config LV_COLOR_16_SWAP
+	default y if LVGL
+
+endif # DISPLAY
+
 endif # BOARD_MI_BAND_4

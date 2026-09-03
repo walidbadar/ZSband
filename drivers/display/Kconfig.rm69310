@@ -1,0 +1,10 @@
+# Copyright (c) 2026 Muhammad Waleed Badar
+# SPDX-License-Identifier: Apache-2.0
+
+config RM69310
+	bool "Raydium RM69310 display driver"
+	default y
+	depends on DT_HAS_RAYDIUM_RM69310_ENABLED
+	select MIPI_DBI
+	help
+	  Enable driver for RM69310 display driver.
