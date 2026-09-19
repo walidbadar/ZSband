@@ -19,3 +19,6 @@ CONFIG_SERIAL=y
 
 # Disable Hex build
 CONFIG_BUILD_OUTPUT_HEX=n
+
+# Disable XIP for Debugging
+CONFIG_XIP=n
