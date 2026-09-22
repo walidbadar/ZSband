@@ -32,6 +32,8 @@
 
 &flash0 {
 	reg = <0x16000000 DT_SIZE_M(16)>;
+	ranges = <0x0 0x16000000 DT_SIZE_M(16)>;
+
 	partitions {
 		compatible = "fixed-partitions";
 		#address-cells = <1>;
