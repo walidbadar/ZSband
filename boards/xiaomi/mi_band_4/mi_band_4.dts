@@ -64,6 +64,34 @@
 	};
 };
 
+&rc32m {
+	status = "disabled";
+};
+
+&xtal32m {
+	status = "okay";
+};
+
+&xtal32k {
+	status = "okay";
+};
+
+/*
+ * On board level we switch to XTAL32K and
+ * so RCX can be disabled.
+ */
+&rcx {
+	status = "disabled";
+};
+
+&lp_clk {
+	clock-src = <&xtal32k>;
+};
+
+&sys_clk {
+	clock-src = <&xtal32m>;
+};
+
 &gpio0 {
 	status = "okay";
 };
@@ -107,10 +135,10 @@
 	rm69310: rm69310@0 {
 		compatible = "raydium,rm69310";
 		reg = <0>;
-		mipi-max-frequency = <DT_FREQ_M(40)>;
+		mipi-max-frequency = <DT_FREQ_M(48)>;
 		mipi-mode = "MIPI_DBI_MODE_SPI_4WIRE";
 		pixel-format = <PANEL_PIXEL_FORMAT_RGB_565>;
-		width  = <240>;
+		width  = <120>;
 		height = <240>;
 	};
 };
