@@ -22,3 +22,8 @@ manifest:
           - cmsis_6
           - lvgl
           - hal_renesas
+
+    - name: tf-psa-crypto
+      url: https://github.com/TrustedFirmware-M/TF-PSA-Crypto.git
+      revision: 765af96a20a2b408474dcd950372ba9af4d26b62
+      path: modules/crypto/tf-psa-crypto
