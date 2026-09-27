@@ -1,0 +1,6 @@
+board:
+  name: mi_band_6
+  full_name: Xiaomi Mi Band 6
+  vendor: xiaomi
+  socs:
+  - name: da14697

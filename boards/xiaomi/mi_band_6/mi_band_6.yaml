@@ -1,0 +1,19 @@
+identifier: mi_band_6
+name: Xiaomi Mi Band 6
+type: mcu
+arch: arm
+ram: 512
+toolchain:
+  - zephyr
+  - gnuarmemb
+supported:
+  - counter
+  - gpio
+  - hwinfo
+  - watchdog
+  - i2c
+  - rtc
+  - crypto
+  - dma
+  - memc
+vendor: xiaomi

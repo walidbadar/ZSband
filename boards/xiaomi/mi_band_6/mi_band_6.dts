@@ -1,0 +1,124 @@
+/*
+ * Copyright (c) 2022 Renesas Electronics Corporation and/or its affiliates
+ * Copyright (c) 2026 Muhammad Waleed Badar
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+
+#include <renesas/smartbond/da14697.dtsi>
+#include "mi_band_6-pinctrl.dtsi"
+
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
+/ {
+	model = "Xiaomi Mi Band 6";
+	compatible = "xiaomi,mi-band-6", "renesas,da14697";
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,console = &uart;
+		zephyr,shell-uart = &uart;
+		zephyr,code-partition = &slot0_partition;
+		zephyr,bt-hci = &bt_hci_da1469x;
+	};
+};
+
+&flash0 {
+	reg = <0x16000000 DT_SIZE_M(32)>;
+	ranges = <0x0 0x16000000 DT_SIZE_M(32)>;
+
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		/*
+		 * Flash area from 0x0000 to 0x2400 is reserved
+		 * for product header added by flasher.
+		 */
+		boot_partition: partition@2400 {
+			label = "mcuboot";
+			reg = <0x000002400 0x0000dc00>;
+		};
+
+		slot0_partition: partition@10000 {
+			label = "image-0";
+			reg = <0x00010000 DT_SIZE_K(1024)>;
+		};
+
+		slot1_partition: partition@110000 {
+			label = "image-1";
+			reg = <0x00110000 DT_SIZE_K(1024)>;
+		};
+
+		storage_partition: partition@210000 {
+			label = "storage";
+			reg = <0x00210000 DT_SIZE_K(30656)>;
+		};
+	};
+};
+
+&rc32m {
+	status = "disabled";
+};
+
+&xtal32m {
+	status = "okay";
+};
+
+&xtal32k {
+	status = "okay";
+};
+
+/*
+ * On board level we switch to XTAL32K and
+ * so RCX can be disabled.
+ */
+&rcx {
+	status = "disabled";
+};
+
+&lp_clk {
+	clock-src = <&xtal32k>;
+};
+
+&sys_clk {
+	clock-src = <&xtal32m>;
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+&uart {
+	pinctrl-0 = <&uart_default>;
+	pinctrl-names = "default";
+	current-speed = <115200>;
+	status = "okay";
+};
+
+&i2c {
+	pinctrl-0 = <&i2c_default>;
+	pinctrl-1 = <&i2c_sleep>;
+	pinctrl-names = "default", "sleep";
+	status = "okay";
+};
+
+&i2c2 {
+	pinctrl-0 = <&i2c2_default>;
+	pinctrl-1 = <&i2c2_sleep>;
+	pinctrl-names = "default", "sleep";
+	status = "okay";
+};
+
+&bt_hci_da1469x {
+	status = "okay";
+};

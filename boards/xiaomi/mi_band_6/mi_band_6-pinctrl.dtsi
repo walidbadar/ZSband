@@ -1,0 +1,53 @@
+/*
+ * Copyright (c) 2022 Renesas Electronics Corporation and/or its affiliates
+ * Copyright (c) 2026 Muhammad Waleed Badar
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include <zephyr/dt-bindings/pinctrl/smartbond-pinctrl.h>
+
+&pinctrl {
+	uart_default: uart_default {
+		group1 {
+			pinmux = <SMARTBOND_PINMUX(UART_TX, 0, 9)>;
+		};
+		group2 {
+			pinmux = <SMARTBOND_PINMUX(UART_RX, 0, 8)>;
+			bias-pull-up;
+		};
+	};
+
+	i2c_default: i2c_default {
+		group1 {
+			pinmux = <SMARTBOND_PINMUX(I2C_SDA, 0, 31)>,
+				<SMARTBOND_PINMUX(I2C_SCL, 0, 30)>;
+			bias-pull-up;
+		};
+	};
+
+	/omit-if-no-ref/ i2c_sleep: i2c_sleep {
+		group1 {
+			pinmux = <SMARTBOND_PINMUX(GPIO, 0, 31)>,
+				<SMARTBOND_PINMUX(GPIO, 0, 30)>;
+			bias-pull-up;
+
+		};
+	};
+
+	i2c2_default: i2c2_default {
+		group1 {
+			pinmux = <SMARTBOND_PINMUX(I2C2_SDA, 0, 28)>,
+				<SMARTBOND_PINMUX(I2C2_SCL, 0, 29)>;
+			bias-pull-up;
+		};
+	};
+
+	/omit-if-no-ref/ i2c2_sleep: i2c2_sleep {
+		group1 {
+			pinmux = <SMARTBOND_PINMUX(GPIO, 0, 28)>,
+				<SMARTBOND_PINMUX(GPIO, 0, 29)>;
+			bias-pull-up;
+		};
+	};
+};
