@@ -1,0 +1,41 @@
+#
+# Copyright (c) 2026 Muhammad Waleed Badar
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+description: Common properties for Raydium RM69xxx display controllers.
+
+include: [display-controller.yaml, mipi-dbi-spi-device.yaml]
+
+properties:
+  pixel-format:
+    type: int
+    required: true
+    description: |
+      Initial Pixel format of this controller's output data.
+    enum:
+      - 1 # PANEL_PIXEL_FORMAT_RGB_888
+      - 16 # PANEL_PIXEL_FORMAT_RGB_565
+
+  x-offset:
+    type: int
+    default: 0
+    description: |
+      Horizontal offset of the active area within the controller's
+      frame buffer. Needed when the panel's active area does not start
+      at column 0 of the controller address space.
+
+  y-offset:
+    type: int
+    default: 0
+    description: |
+      Vertical offset of the active area within the controller's
+      frame buffer.
+
+  inversion:
+    type: boolean
+    description: |
+      Enable display colour inversion (INVON). Some panel assemblies
+      ship with the OLED stack arranged so that colour inversion is
+      required to produce a correct image.

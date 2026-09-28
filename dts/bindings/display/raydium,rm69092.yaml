@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2026 Muhammad Waleed Badar
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+title: Raydium RM69092 display controller
+
+description: |
+  The Raydium RM69092 is a 16.7M colors OLED controller
+  with a maximum 480RGBx480 resolution.
+
+compatible: "raydium,rm69092"
+
+include: raydium,rm69xxx-common.yaml

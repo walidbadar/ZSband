@@ -20,6 +20,6 @@ module = DISPLAY
 module-str = display
 source "subsys/logging/Kconfig.template.log_config"
 
-rsource "Kconfig.rm69310"
+rsource "Kconfig.rm69xxx"
 
 endif # DISPLAY
