@@ -103,7 +103,8 @@ static int iqs620a_setup(const struct device *dev)
 
 	ret = i2c_reg_update_byte_dt(&cfg->i2c, IQS620A_REG_SYS_SETTINGS,
 				     IQS620A_SYS_SETTINGS_ACK_RESET | IQS620A_SYS_SETTINGS_REDO_ATI,
-				     IQS620A_SYS_SETTINGS_ACK_RESET | IQS620A_SYS_SETTINGS_REDO_ATI);
+				     IQS620A_SYS_SETTINGS_ACK_RESET |
+					     IQS620A_SYS_SETTINGS_REDO_ATI);
 	if (ret < 0) {
 		return ret;
 	}
@@ -122,8 +123,7 @@ static int iqs620a_sample_fetch(const struct device *dev, enum sensor_channel ch
 		return -ENOTSUP;
 	}
 
-	ret = i2c_burst_read_dt(&cfg->i2c, IQS620A_REG_SYS_FLAGS, data->flags,
-				sizeof(data->flags));
+	ret = i2c_burst_read_dt(&cfg->i2c, IQS620A_REG_SYS_FLAGS, data->flags, sizeof(data->flags));
 	if (ret < 0) {
 		return ret;
 	}
@@ -230,16 +230,13 @@ static int iqs620a_init(const struct device *dev)
 	BUILD_ASSERT(DT_INST_PROP_LEN_OR(inst, init_regs, 0) % 2 == 0,                             \
 		     "init-regs must contain address/value pairs");                                \
                                                                                                    \
-	IF_ENABLED(DT_INST_NODE_HAS_PROP(inst, init_regs),                                         \
-		   (static const uint8_t iqs620a_init_regs_##inst[] =                              \
-			    DT_INST_PROP(inst, init_regs);))                                       \
+	static const uint8_t iqs620a_init_regs_##inst[] = DT_INST_PROP_OR(inst, init_regs, {0});   \
                                                                                                    \
 	static struct iqs620a_data iqs620a_data_##inst;                                            \
                                                                                                    \
 	static const struct iqs620a_config iqs620a_config_##inst = {                               \
 		.i2c = I2C_DT_SPEC_INST_GET(inst),                                                 \
-		.init_regs = COND_CODE_1(DT_INST_NODE_HAS_PROP(inst, init_regs),                   \
-					 (iqs620a_init_regs_##inst), (NULL)),                      \
+		.init_regs = iqs620a_init_regs_##inst,                                             \
 		.init_regs_len = DT_INST_PROP_LEN_OR(inst, init_regs, 0),                          \
 	};                                                                                         \
                                                                                                    \

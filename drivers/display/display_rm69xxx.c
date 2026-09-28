@@ -280,7 +280,7 @@ static const struct display_driver_api rm69xxx_api = {
 	static struct rm69xxx_data t##_data_##n = {                                                \
 		.pixel_format = DT_INST_PROP(n, pixel_format),                                     \
 	};                                                                                         \
-	                                                                                           \
+                                                                                                   \
 	static const struct rm69xxx_config t##_config_##n = {                                      \
 		.mipi_dev = DEVICE_DT_GET(DT_INST_PARENT(n)),                                      \
 		.dbi_config = MIPI_DBI_CONFIG_DT_INST(                                             \
@@ -292,9 +292,9 @@ static const struct display_driver_api rm69xxx_api = {
 		.inversion = DT_INST_PROP(n, inversion),                                           \
 		.cmd2_init = cmd2,                                                                 \
 	};                                                                                         \
-	                                                                                           \
-	DEVICE_DT_INST_DEFINE(n, rm69xxx_init, NULL, &t##_data_##n, &t##_config_##n,               \
-			      POST_KERNEL, CONFIG_DISPLAY_INIT_PRIORITY, &rm69xxx_api);
+                                                                                                   \
+	DEVICE_DT_INST_DEFINE(n, rm69xxx_init, NULL, &t##_data_##n, &t##_config_##n, POST_KERNEL,  \
+			      CONFIG_DISPLAY_INIT_PRIORITY, &rm69xxx_api);
 
 DT_INST_FOREACH_STATUS_OKAY_VARGS(RM69XXX_INIT, rm69310, true)
 
