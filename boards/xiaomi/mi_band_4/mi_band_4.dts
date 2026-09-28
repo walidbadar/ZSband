@@ -140,6 +140,7 @@
 		pixel-format = <PANEL_PIXEL_FORMAT_RGB_565>;
 		width  = <120>;
 		height = <240>;
+		x-offset = <4>;
 	};
 };
 
