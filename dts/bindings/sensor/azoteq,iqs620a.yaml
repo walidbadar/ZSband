@@ -1,0 +1,35 @@
+#
+# Copyright (c) 2026 Muhammad Waleed Badar
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+title: Azoteq IQS620A ProxFusion sensor
+
+description: |
+  The Azoteq IQS620A combines capacitive proximity/touch, Hall-effect
+  and temperature sensing, and is accessed over I2C.
+
+  Example:
+
+  &i2c {
+      iqs620a: iqs620a@44 {
+          compatible = "azoteq,iqs620a";
+          reg = <0x44>;
+      };
+  };
+
+compatible: "azoteq,iqs620a"
+
+include: [sensor-device.yaml, i2c-device.yaml]
+
+properties:
+  init-regs:
+    type: uint8-array
+    description: |
+      Register address/value pairs written during initialization, before
+      the reset is acknowledged and ATI is performed. Use this to apply
+      board specific tuning, for example settings exported from the
+      Azoteq PC software. Registers not listed keep their reset defaults.
+
+      init-regs = [60 10 61 20];  /* Ch0 prox and touch thresholds */

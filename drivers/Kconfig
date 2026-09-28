@@ -1,3 +1,4 @@
 menu "Drivers"
 rsource "display/Kconfig.rm69xxx"
+rsource "sensor/Kconfig"
 endmenu

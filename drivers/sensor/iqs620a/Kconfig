@@ -1,0 +1,11 @@
+# Copyright (c) 2026 Muhammad Waleed Badar
+# SPDX-License-Identifier: Apache-2.0
+
+config IQS620A
+	bool "Azoteq IQS620A ProxFusion sensor"
+	default y
+	depends on DT_HAS_AZOTEQ_IQS620A_ENABLED
+	select I2C
+	help
+	  Enable driver for the Azoteq IQS620A capacitive, Hall-effect and
+	  temperature sensor.
