@@ -1,0 +1,61 @@
+#
+# Copyright (c) 2026 Muhammad Waleed Badar
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+title: Texas Instruments AFE4900 optical bio-sensing front end
+
+description: |
+  The AFE4900 drives up to four LEDs and digitizes the photodiode current
+  for PPG measurements. The driver uses the I2C interface and the internal
+  128 kHz oscillator, and samples LED1, LED2, LED3 and ambient phases.
+
+  Example:
+
+  &i2c {
+      afe4900: afe4900@5b {
+          compatible = "ti,afe4900";
+          reg = <0x5b>;
+          sample-rate-hz = <100>;
+          led-current-microamp = <10000 0 0>;
+      };
+  };
+
+compatible: "ti,afe4900"
+
+include: [sensor-device.yaml, i2c-device.yaml]
+
+properties:
+  reset-gpios:
+    type: phandle-array
+    description: |
+      RESETZ pin. If present, the device is reset with a pulse on this pin,
+      otherwise with the SW_RESET bit.
+
+  sample-rate-hz:
+    type: int
+    default: 100
+    description: Pulse repetition frequency, between 1 and 500 Hz.
+
+  tia-gain-ohms:
+    type: int
+    default: 100000
+    enum:
+      - 10000
+      - 25000
+      - 50000
+      - 100000
+      - 250000
+      - 500000
+      - 1000000
+      - 1500000
+      - 2000000
+    description: TIA feedback resistance (RF) applied to all phases.
+
+  led-current-microamp:
+    type: array
+    default: [0, 0, 0]
+    description: |
+      Drive current of LED1, LED2 and LED3 in microamps, 0 to 50000.
+      All LEDs are off by default.

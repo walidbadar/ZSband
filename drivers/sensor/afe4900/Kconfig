@@ -1,0 +1,10 @@
+# Copyright (c) 2026 Muhammad Waleed Badar
+# SPDX-License-Identifier: Apache-2.0
+
+config AFE4900
+	bool "TI AFE4900 optical bio-sensing front end"
+	default y
+	depends on DT_HAS_TI_AFE4900_ENABLED
+	select I2C
+	help
+	  Enable driver for the Texas Instruments AFE4900 PPG front end.

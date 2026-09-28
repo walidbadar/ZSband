@@ -1,9 +1,5 @@
 # Copyright (c) 2026 Muhammad Waleed Badar
 # SPDX-License-Identifier: Apache-2.0
 
-if SENSOR
-
-rsource "afe4900/Kconfig"
-rsource "iqs620a/Kconfig"
-
-endif # SENSOR
+zephyr_library()
+zephyr_library_sources(afe4900.c)
