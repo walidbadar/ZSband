@@ -15,14 +15,6 @@ Full documentation is published at **<https://walidbadar.github.io/ZSband/>**.
 * [Xiaomi Mi Band 4](https://walidbadar.github.io/ZSband/boards/xiaomi/mi_band_4/doc/index.html):
   hardware details, debug pads, and build, flash and debug instructions
 
-The documentation sources live in [doc/](doc/) and the board docs under
-[boards/](boards/). To build them locally:
-
-```console
-pip install -r doc/requirements.txt
-sphinx-build -b html doc doc/_build/html
-```
-
 ## Project Phases
 
 ### Phase 1: Hardware Analysis
