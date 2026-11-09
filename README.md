@@ -1,13 +1,27 @@
 # ZSBand: Reverse Engineering of Xiaomi Mi Band
 
+[![Documentation](https://github.com/walidbadar/ZSband/actions/workflows/docs.yml/badge.svg)](https://walidbadar.github.io/ZSband/)
+
 ## Overview
 
 This project outlines a systematic approach to hack, reverse engineer, and eventually develop custom Zephyr RTOS based firmware for the Xiaomi Mi Band. It aims to understand the device's hardware components, and system overview to create an open-source alternative firmware.
 
 ![Xiaomi Mi Band](doc/img/mi_band.jpg)
 
-Hardware details, build, flash and debug instructions are
-documented in the [Xiaomi Mi Band 4 board documentation](boards/xiaomi/mi_band_4/doc/index.rst).
+## Documentation
+
+Full documentation is published at **<https://walidbadar.github.io/ZSband/>**.
+
+* [Xiaomi Mi Band 4](https://walidbadar.github.io/ZSband/boards/xiaomi/mi_band_4/doc/index.html):
+  hardware details, debug pads, and build, flash and debug instructions
+
+The documentation sources live in [doc/](doc/) and the board docs under
+[boards/](boards/). To build them locally:
+
+```console
+pip install -r doc/requirements.txt
+sphinx-build -b html doc doc/_build/html
+```
 
 ## Project Phases
 

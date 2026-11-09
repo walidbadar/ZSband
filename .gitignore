@@ -4,3 +4,4 @@ build
 target
 Cargo.lock
 *.key.pem
+doc/_build

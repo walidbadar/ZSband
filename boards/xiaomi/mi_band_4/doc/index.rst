@@ -33,7 +33,9 @@ Hardware
    System overview
 
 Datasheets for the main components are available in the
-`doc/datasheets <../../../../doc/datasheets>`_ directory of this repository.
+`doc/datasheets
+<https://github.com/walidbadar/ZSband/tree/main/doc/datasheets>`_ directory of
+this repository.
 
 Supported Features
 ==================
@@ -182,5 +184,5 @@ adapter. The image is written to ``output.bin``:
 References
 **********
 
-- `DA1469x datasheet <../../../../doc/datasheets/DA1469x>`_
+- `DA1469x datasheet <https://github.com/walidbadar/ZSband/tree/main/doc/datasheets/DA1469x>`_
 - `ZSBand repository <https://github.com/walidbadar/ZSband>`_
